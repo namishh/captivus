@@ -16,7 +16,7 @@ for i in strategies:
 matchups = [[a, b] for idx, a in enumerate(players) for b in players[idx + 1:]]
 
 for k in range(10):
-    rounds = random.randint(1000, 5000)
+    rounds = random.randint(2400,2600)
     for i in matchups:
         g = Game(i, rounds)
         g.match()
