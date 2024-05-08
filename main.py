@@ -13,7 +13,7 @@ for i in strategies:
     scores[p.name] = 0
 
 
-matchups = [[a, b] for idx, a in enumerate(players) for b in players[idx + 1:]]
+matchups = [[a, b] for idx, a in enumerate(players) for b in players[idx:]]
 
 for k in range(10):
     rounds = random.randint(2400,2600)
