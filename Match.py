@@ -1,6 +1,7 @@
 class Match:
-    def __init__(self, maxrounds, prisoner_1, prisoner_2) -> None:
+    def __init__(self, maxrounds, prisoner_1, prisoner_2, print_history) -> None:
         self.maxrounds = maxrounds
+        self.print_history = print_history
         self.p1 = prisoner_1
         self.p2 = prisoner_2
 
@@ -28,6 +29,11 @@ class Match:
             score2 += scores[1]
             pr1.process_results(strategy1, strategy2, score1, score2)
             pr2.process_results(strategy2, strategy1, score2, score1)
+        
+        if self.print_history:
+            print(f"Match - {pr1.name} V/S {pr2.name}")
+            print(f"{pr1.name} : {score1}")
+            print(f"{pr2.name} : {score2}\n")
 
         return (score1, score2)
 

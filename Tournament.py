@@ -4,9 +4,10 @@ from itertools import combinations
 from random import randint
 
 class Tournament:
-    def __init__(self, maxrounds) -> None:
+    def __init__(self, maxrounds, print_history) -> None:
         self.strategies = strategies
         self.maxrounds = maxrounds
+        self.print_history = print_history
         self.database = {}
 
     def sorted_scores(self):
@@ -21,7 +22,7 @@ class Tournament:
         for i in pairs:
             p1 = i[0]()
             p2 = i[1]()
-            match = Match(rounds, i[0],i[1])
+            match = Match(rounds, i[0],i[1], self.print_history)
             scores = match.match()
             if p1.name not in self.database:
                 self.database[p1.name] = 0
@@ -32,5 +33,11 @@ class Tournament:
             self.database[p2.name] = self.database[p2.name] + scores[1]
 
     def repeat(self):
-        for _ in range(self.maxrounds):
+        for i in range(self.maxrounds):
             self.round()
+            
+            if self.print_history:
+                print(f"After Tournament {i+1}")
+                for j in self.database:
+                    print(f"{j} : {self.database[j]}")
+                print()
