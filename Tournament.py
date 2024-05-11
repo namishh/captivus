@@ -1,6 +1,6 @@
 from Strategies import strategies
 from Match import Match
-from itertools import combinations
+from itertools import combinations,permutations
 from random import randint
 
 class Tournament:
