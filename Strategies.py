@@ -162,6 +162,40 @@ class TitForTat_Avg(Player):
             self.strat = True
         else:
             self.strat = False
+    def __str__(self) -> str:
+        return self.name
 
-strategies = [Moses, Tit4Tat, GenerousTit4Tat, Lucifer, Moody, InverseMoody, TitForTat_Avg, Gambler, SnekayTit4Tat, Friedsman]
+class thinker(Player):
+    def __init__(self):
+        self.strat=False
+        self.name="Thinker"
+        self.other_strat=[]
+        self.self_strat=[]
+    def pick_strategy(self):
+        return self.strat
+    def process_results(self, my_strategy, other_strategy, my_score, other_score):
+        self.other_strat.append(other_strategy)
+        self.self_strat.append(my_strategy)
+        if len(self.self_strat)>=1 and not self.other_strat[0]:
+            self.last_strategy = other_strategy  
+    def __str__(self) -> str:
+        return self.name
+
+class inverse_thinker(Player):
+    def __init__(self):
+        self.strat=False
+        self.name="Thinker"
+        self.other_strat=[]
+        self.self_strat=[]
+    def pick_strategy(self):
+        return self.strat
+    def process_results(self, my_strategy, other_strategy, my_score, other_score):
+        self.other_strat.append(other_strategy)
+        self.self_strat.append(my_strategy)
+        if len(self.self_strat)>=1 and self.other_strat[0]:
+            self.last_strategy = other_strategy  
+    def __str__(self) -> str:
+        return self.name 
+
+strategies = [Moses, Tit4Tat, GenerousTit4Tat, Lucifer,thinker,inverse_thinker, Moody, InverseMoody, TitForTat_Avg, Gambler, SnekayTit4Tat, Friedsman]
 
