@@ -195,7 +195,23 @@ class inverse_thinker(Player):
         if len(self.self_strat)>=1 and self.other_strat[0]:
             self.last_strategy = other_strategy  
     def __str__(self) -> str:
-        return self.name 
+        return self.name
 
-strategies = [Moses, Tit4Tat, GenerousTit4Tat, Lucifer,thinker,inverse_thinker, Moody, InverseMoody, TitForTat_Avg, Gambler, SnekayTit4Tat, Friedsman]
+class Inverse_Tit4Tat(Player):
+
+    def __init__(self):
+        self.name = "Inverse Tit 4 Tat"
+        self.last_strategy = False
+
+    def pick_strategy(self):
+        return self.last_strategy
+
+    def process_results(self, my_strategy, other_strategy, my_score, other_score):
+        self.last_strategy = not other_strategy
+
+    def __str__(self) -> str:
+        return self.name
+
+
+strategies = [Moses, Tit4Tat,Inverse_Tit4Tat, GenerousTit4Tat, Lucifer,thinker,inverse_thinker, Moody, InverseMoody, TitForTat_Avg, Gambler, SnekayTit4Tat, Friedsman]
 
