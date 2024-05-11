@@ -14,7 +14,8 @@ class Tournament:
         print(sorted(self.database.items(), key=lambda x: x[1], reverse=True))
 
     def give_pairs(self):
-        return list(combinations(self.strategies, 2))
+        ## MATCH WITH EVERY POSSIBLE PAIR + MATCH WITH SELF AS WELL
+        return list(combinations(self.strategies, 2)) + [(a,a) for a in self.strategies]
 
     def round(self):
         pairs = self.give_pairs()

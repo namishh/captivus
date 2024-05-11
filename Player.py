@@ -6,6 +6,5 @@ class Player:
     def action(self):
         return True
 
-    ### Process the results of a round. This provides an opportunity to
     def process_results(self, my_strategy, other_strategy, my_score, other_score):
         pass

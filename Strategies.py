@@ -18,6 +18,25 @@ class Tit4Tat(Player):
     def __str__(self) -> str:
         return self.name
 
+class SnekayTit4Tat(Player):
+
+    def __init__(self):
+        self.name = "Sneaky Tit 4 Tat"
+        self.count = 0
+        self.last_strategy = True
+
+    def pick_strategy(self):
+        return self.last_strategy
+
+    def process_results(self, my_strategy, other_strategy, my_score, other_score):
+        self.count+=1
+        if self.count % 3 == 0:
+            self.last_strategy = random.choice([True, False])
+        else:
+            self.last_strategy = other_strategy
+
+    def __str__(self) -> str:
+        return self.name
 
 class GenerousTit4Tat(Player):
 
@@ -71,10 +90,26 @@ class Moses(Player):
     def __str__(self) -> str:
         return self.name
 
+class Friedsman(Player):
+    def __init__(self):
+        self.name = "Friedsman"
+        self.strat = True
+        self.enemy_moves = []
+
+    def pick_strategy(self):
+        return self.strat
+    
+    def process_results(self, my_strategy, other_strategy, my_score, other_score):
+        if False in self.enemy_moves:
+            self.strat = False
+        self.enemy_moves.append(other_strategy)
+
+    def __str__(self) -> str:
+        return self.name
+
 class Moody(Player):
     def __init__(self):
         self.name = "Moody"
-        self.enemymoves = []
         self.move = True
 
     def pick_strategy(self):
@@ -93,7 +128,6 @@ class Moody(Player):
 class InverseMoody(Player):
     def __init__(self):
         self.name = "Inverse Moody"
-        self.enemymoves = []
         self.last_strategy = True
 
     def pick_strategy(self):
@@ -129,5 +163,5 @@ class TitForTat_Avg(Player):
         else:
             self.strat = False
 
-strategies = [Moses, Tit4Tat, GenerousTit4Tat, Lucifer, Moody, InverseMoody, TitForTat_Avg, Gambler]
+strategies = [Moses, Tit4Tat, GenerousTit4Tat, Lucifer, Moody, InverseMoody, TitForTat_Avg, Gambler, SnekayTit4Tat, Friedsman]
 
