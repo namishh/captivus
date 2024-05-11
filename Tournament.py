@@ -11,7 +11,10 @@ class Tournament:
         self.database = {}
 
     def sorted_scores(self):
-        print(sorted(self.database.items(), key=lambda x: x[1], reverse=True))
+        scores = sorted(self.database.items(), key=lambda x: x[1], reverse=True)
+        print("Leaderboard")
+        for i in scores:
+            print(f'{i[0]} : {i[1]}')
 
     def give_pairs(self):
         ## MATCH WITH EVERY POSSIBLE PAIR + MATCH WITH SELF AS WELL
