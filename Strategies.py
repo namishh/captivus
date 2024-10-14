@@ -1,16 +1,6 @@
 from Player import Player
 import random
 
-class Gambler(Player):
-    def __init__(self):
-        self.name = "Gambler | Added by nam"
-
-    def pick_strategy(self):
-        return random.choice([True, False])
-
-    def __str__(self) -> str:
-        return self.name
-
 class APJ(Player):
     def __init__(self):
         self.move = True 
